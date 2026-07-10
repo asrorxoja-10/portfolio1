@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asrorxoja Anvarxojayev | Portfolio</title>
+    <link rel="stylesheet" href="{% static 'portfolio/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="logo"><strong>Asrorxoja.dev</strong></div>
+        <ul class="nav-links">
+            <li><a href="#about">Men haqimda</a></li>
+            <li><a href="#skills">Ko'nikmalar</a></li>
+            <li><a href="#projects">Loyihalar</a></li>
+            <li><a href="#contact">Aloqa</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2>Men haqimda</h2>
+                    <p>Salom! Mening ismim <strong>Asrorxoja Anvarxojayev</strong>. Men mustahkam va xavfsiz backend tizimlarini qurishga ixtisoslashgan <strong>Backend dasturchiman</strong>.</p>
+                    <p>Asosiy kuchli tomonlarim <strong>Python</strong> va <strong>Django</strong> ekotizimiga asoslangan bo'lib, loyihalarda <strong>REST API</strong>lar yaratish, <strong>PostgreSQL</strong> ma'lumotlar bazasi bilan ishlash va tizimlarni <strong>Docker</strong> yordamida konteynerizatsiya qilish bo'yicha katta tajribaga egaman. API-larni mukammal testlash uchun <strong>Postman</strong> vositasidan faol foydalanaman.</p>
+                    <p>Shuningdek, loyihalarni to'liq (Full-stack) tushunish va jamoa bilan samarali ishlash uchun <strong>Frontend (HTML, CSS, JavaScript)</strong> hamda <strong>Git/GitHub</strong> texnologiyalaridan ham yaxshi xabardorman. Maqsadim — yuqori yuklamalarga chidamli, tezkor va zamonaviy veb-ilovalarni yaratish.</p>
+                </div>
+                <div class="about-image">
+                    <img src="{% static 'portfolio/avatar.jpg' %}" alt="Asrorxoja Anvarxojayev">
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Mening ko'nikmalarim</h2>
+            <div class="skills-container">
+                {% for skill in skills %}
+                <div class="skill-card">
+                    <div class="skill-info">
+                        <span>{{ skill.name }}</span>
+                        <small>{{ skill.percentage }}%</small>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: {{ skill.percentage }}%;"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Mening loyihalarim</h2>
+            <div class="projects-container">
+                {% for project in projects %}
+                <div class="project-card">
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    <p style="margin-bottom: 15px;">
+                        <strong>Texnologiyalar:</strong> <br>
+                        <span class="tech-badge">{{ project.technologies }}</span>
+                    </p>
+                    {% if project.link and project.link != "#" %}
+                        <a href="{{ project.link }}" target="_blank" class="btn">Loyihani ko'rish</a>
+                    {% else %}
+                        <span class="btn" style="background-color: #334155; color: #94a3b8; cursor: default;">Hozir shu sahifadasiz</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Aloqa</h2>
+            <p>Men bilan bog'lanish yoki hamkorlik qilish uchun:</p>
+            <ul>
+                <li>
+                    <strong>Telefon:</strong><br>
+                    <a href="tel:+998332332386">+998 (33) 233-23-86</a>
+                </li>
+                <li>
+                    <strong>Telegram:</strong><br>
+                    <a href="https://t.me/anvarxojayev_775" target="_blank">@anvarxojayev_775</a>
+                </li>
+                <li>
+                    <strong>Instagram:</strong><br>
+                    <a href="https://instagram.com/anvarxojayev__775" target="_blank">@anvarxojayev__775</a>
+                </li>
+                <li>
+                    <strong>GitHub:</strong><br>
+                    <a href="https://github.com/asrorxoja-10" target="_blank">asrorxoja-10</a>
+                </li>
+                <li>
+                    <strong>Email:</strong><br>
+                    <a href="mailto:anvarxojayevasrorxoja@gmail.com">anvarxojayevasrorxoja@gmail.com</a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+</body>
+</html>
