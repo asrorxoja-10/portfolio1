@@ -7,7 +7,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security settings (Xavfsizlik sozlamalari)
 SECRET_KEY = 'django-insecure-your-secret-key-here'
 DEBUG = True
-ALLOWED_HOSTS = []
+
+# RENDER VA LOKAL MUHIT UCHUN RUXSAT ETILGAN MANZILLAR
+ALLOWED_HOSTS = ['asrorxoja-portfolio.onrender.com', '127.0.0.1', 'localhost']
 
 # Application definition
 INSTALLED_APPS = [
@@ -24,6 +26,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Render-da CSS/JS fayllar xatosiz ishlashi uchun
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -89,6 +92,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "portfolio" / "static",
 ]
+
+# Serverda yig'iladigan statik fayllar joyi
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Kelajakda loyihalarga rasm yuklasangiz, ular saqlanadigan joy (Media)
 MEDIA_URL = '/media/'
